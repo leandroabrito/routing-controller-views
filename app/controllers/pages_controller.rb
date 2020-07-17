@@ -8,7 +8,17 @@ class PagesController < ApplicationController
   end
 
   def contact
-    @members = ['Ben', 'Rebecca', 'Alex']
-  end
+    search = params[:member]
+    @members = ['Ben', 'Rebecca', 'Katherine', "Alex", "Celine", "Lucien"]
 
+    if search.present?
+      @members = @members.select { |name| search.downcase == name.downcase }
+    end
+
+    # if @members.include? search
+    #   @members = @members.select { |name| name.downcase == search.downcase }
+    # else
+    #   @members
+    # end
+  end
 end
